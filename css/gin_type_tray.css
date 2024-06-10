@@ -17,6 +17,10 @@
     margin-bottom: var(--gin-spacing-density-l);
 }
 
+#type-tray__form.gin-layer-wrapper {
+    padding: var(--gin-spacing-m);
+}
+
 #type-tray__content.gin-layer-wrapper {
     padding: var(--gin-spacing-m);
 }
