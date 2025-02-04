@@ -17,7 +17,7 @@
       "source": "http://cgit.drupalcode.org/gin_type_tray"
     },
     "require": {
-      "drupal/gin": "^3.0",
+      "drupal/gin": "^3 || ^4",
       "drupal/type_tray": "^1.2"
     }
 }
