@@ -28,8 +28,27 @@ function gin_type_tray_theme_registry_alter(&$theme_registry) {
  *  Implements hook_preprocess().
  */
 function gin_type_tray_preprocess_type_tray_teaser(&$vars) {
-    $icon_ext = pathinfo($vars['icon_url'], PATHINFO_EXTENSION);
-    $vars['icon_filetype'] = $icon_ext;
+  $icon_ext = pathinfo($vars['icon_url'], PATHINFO_EXTENSION);
+  $vars['icon_filetype'] = $icon_ext;
+
+  // Get the base URL of the current request.
+  $base_url = \Drupal::request()->getBaseUrl();
+  // Get the origin URL including scheme and host.
+  $origin_url = \Drupal::request()->getSchemeAndHttpHost() . $base_url;
+
+  // If the icon file is an SVG, replace the base URL in the URL with an empty string.
+  if ($icon_ext == 'svg') {
+    $vars['icon_url'] = str_replace($base_url, '', $vars['icon_url']);
+  }
+  else {
+    // If the icon file is not an SVG, prepend the origin URL to the URL.
+    $vars['icon_url'] =  $origin_url . $vars['icon_url'];
+  }
+
+  // Check if the thumbnail URL starts with '/module' and prepend the base URL if true.
+  if (isset($vars['thumbnail_url']) && str_starts_with($vars['thumbnail_url'], '/module')) {
+    $vars['thumbnail_url'] = $origin_url . $vars['thumbnail_url'];
+  }
 }
 
 /**
