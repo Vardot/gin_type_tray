@@ -1,7 +1,7 @@
 name: Gin Type Tray
 type: module
 description: Themes the Type Tray module for the Gin administrative theme.
-package: Custom
+package: User Interface
 core_version_requirement: ^9 || ^10 || ^11
 dependencies:
-  - type_tray
+  - type_tray:type_tray
