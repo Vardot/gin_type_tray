@@ -33,7 +33,10 @@
   {% endif %}
 
     <div class="type-tray__content-wrapper admin-item">
-      {{ link('', content_type_link.url, create_attribute({'class': ['admin-item__link'], 'title': "Create a new #{content_type_entity.label}."})) }}
+      {{ link('', content_type_link.url, create_attribute({
+        'class': ['admin-item__link'],
+        'title': 'Create a new @type.'|t({'@type': content_type_entity.label}, {'context': 'gin_type_tray'})
+      })) }}
 
       <div class="type-tray__icon {% if icon_filetype == 'svg' %}type-tray__icon--vector{% else %}type-tray__icon--raster{% endif %}">
         {% if icon_url %}
