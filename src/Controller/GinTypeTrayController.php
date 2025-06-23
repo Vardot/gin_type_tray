@@ -19,22 +19,22 @@ class GinTypeTrayController extends TypeTrayController {
    * @return array
    *   A render array for a list of node types that can be added.
    */
-  public function addPage(Request $request = NULL) {
+  public function addPage(?Request $request = NULL) {
     $build = parent::addPage($request);
-    
-    // Loop through categories
+
+    // Loop through categories.
     foreach ($build['#items'] as $category => $types) {
-      // Loop through types
+      // Loop through types.
       foreach ($types as $type_id => $type) {
-        // Change TYPE_TRAY_DEFAULT_ICON_PATH to a new one
-        if($build['#items'][$category][$type_id]['#icon_url'] == '/' . $this->moduleList->getPath('type_tray') . static::TYPE_TRAY_DEFAULT_ICON_PATH) {
-          $build['#items'][$category][$type_id]['#icon_url'] =  \Drupal::service('extension.list.module')->getPath('gin_type_tray') . '/assets/icons/file-text.svg';
+        // Change TYPE_TRAY_DEFAULT_ICON_PATH to a new one.
+        if ($build['#items'][$category][$type_id]['#icon_url'] == '/' . $this->moduleList->getPath('type_tray') . static::TYPE_TRAY_DEFAULT_ICON_PATH) {
+          $build['#items'][$category][$type_id]['#icon_url'] = \Drupal::service('extension.list.module')->getPath('gin_type_tray') . '/assets/icons/file-text.svg';
         }
 
       }
     }
-    
+
     return $build;
   }
- 
+
 }
